@@ -5,4 +5,10 @@
     <string name="register">Register</string>
     <string name="login">Login</string>
     <string name="name">Name</string>
+    <string name="username">Username</string>
+    <string name="profile_image">Profile_Image</string>
+    <string name="camera">Camera</string>
+    <string name="gallery">Gallery</string>
+    <string name="deskripsi">Deskripsi</string>
+    <string name="upload">Upload</string>
 </resources>

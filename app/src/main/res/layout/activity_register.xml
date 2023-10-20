@@ -67,9 +67,9 @@
         app:layout_constraintTop_toBottomOf="@+id/registerTexts">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/name_input"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
+            android:layout_height="wrap_content" />
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -86,6 +86,7 @@
         app:layout_constraintTop_toBottomOf="@+id/name">
 
         <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/email_input"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="textEmailAddress" />
@@ -105,10 +106,15 @@
         app:layout_constraintStart_toStartOf="@+id/viewContainer"
         app:layout_constraintTop_toBottomOf="@+id/email">
 
-        <com.google.android.material.textfield.TextInputEditText
+        <!--Custom Editext-->
+        <com.rangga.storyapp.ui.component.MyEditText
             android:layout_width="match_parent"
+            android:id="@+id/passwordInput"
             android:layout_height="wrap_content"
             android:inputType="textPassword" />
+        <!--Custom Editext-->
+
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
@@ -121,7 +127,8 @@
         android:text="@string/submit"
         app:layout_constraintEnd_toEndOf="@+id/viewContainer"
         app:layout_constraintStart_toStartOf="@+id/viewContainer"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintTop_toBottomOf="@+id/password"
+        />
 
     <TextView
         android:id="@+id/loginText"
@@ -132,13 +139,24 @@
         android:layout_marginEnd="24dp"
         android:text="@string/login"
         android:textAlignment="center"
-        android:textSize="@dimen/normal"
         android:textColor="@color/primary"
+        android:textSize="@dimen/normal"
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="@+id/viewContainer"
         app:layout_constraintStart_toStartOf="@+id/viewContainer"
-        app:layout_constraintTop_toBottomOf="@+id/submit"
-        />
+        app:layout_constraintTop_toBottomOf="@+id/submit" />
 
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        android:visibility="gone"
+        />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

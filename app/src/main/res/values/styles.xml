@@ -1,0 +1,10 @@
+<resources>
+    <!-- Base application theme -->
+    <style name="AppTheme" parent="Theme.Material3.DayNight">
+        <!-- Customize other attributes as needed -->
+        <item name="colorPrimary">@color/primary</item>
+        <item name="windowActionBar">false</item> <!-- Disable ActionBar -->
+        <item name="windowNoTitle">true</item>    <!-- Disable the title of the activity -->
+    </style>
+
+</resources>

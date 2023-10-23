@@ -35,8 +35,11 @@ class DetailStoryActivity : AppCompatActivity() {
                 .load(it?.story?.photoUrl)
                 .into(binding.imageDetail)
 
-            binding.nameDetail.text = it?.story?.name.toString()
-            binding.descDetail.text = it?.story?.description.toString()
+            binding.apply {
+                nameDetail.text = it?.story?.name.toString()
+                descDetail.text = it?.story?.description.toString()
+            }
+
         })
 
         supportActionBar?.title = "Detail Story"

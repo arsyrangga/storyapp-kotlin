@@ -21,6 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="200dp"
             android:transitionName="profile"
+            android:contentDescription="@string/detail_image"
             />
         <TextView
             android:id="@+id/nameDetail"

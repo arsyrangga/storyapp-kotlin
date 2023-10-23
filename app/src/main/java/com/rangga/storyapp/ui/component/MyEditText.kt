@@ -1,6 +1,7 @@
 package com.rangga.storyapp.ui.component
 
 import android.content.Context
+import android.content.res.Resources
 import android.graphics.Canvas
 import android.graphics.drawable.Drawable
 import android.text.Editable
@@ -39,6 +40,7 @@ class MyEditText : AppCompatEditText, View.OnTouchListener {
         clearButtonImage = ContextCompat.getDrawable(context, R.drawable.baseline_close_24) as Drawable
         password = findViewById(R.id.passwordInput)
         setOnTouchListener(this)
+        val error_message = context.getText(R.string.errorMessage)
 //
         addTextChangedListener(object : TextWatcher {
             override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {
@@ -47,7 +49,7 @@ class MyEditText : AppCompatEditText, View.OnTouchListener {
             }
             override fun afterTextChanged(data: Editable?) {
                 if(data?.length!! < 8){
-                    password.error = "Password harus 8 karakter"
+                    password.error = error_message
                 } else{
                 }
             }

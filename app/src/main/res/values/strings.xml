@@ -11,4 +11,6 @@
     <string name="gallery">Gallery</string>
     <string name="deskripsi">Deskripsi</string>
     <string name="upload">Upload</string>
+    <string name="detail_image">Detail Image</string>
+    <string name="errorMessage">Password harus 8 karakter</string>
 </resources>

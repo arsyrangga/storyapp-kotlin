@@ -1,6 +1,7 @@
 package com.rangga.storyapp.data.retrofit
 
 import android.content.Context
+import com.rangga.storyapp.BuildConfig
 import com.rangga.storyapp.helper.SessionManager
 import com.rangga.storyapp.helper.TokenDatastore
 import okhttp3.Interceptor
@@ -8,7 +9,6 @@ import okhttp3.OkHttpClient
 import okhttp3.Response
 import okhttp3.logging.HttpLoggingInterceptor
 import retrofit2.Retrofit
-
 import retrofit2.converter.gson.GsonConverterFactory
 
 
@@ -31,9 +31,10 @@ object ApiRequest {
     private var apiService: ApiService? = null
 
     fun getApiService(context: Context): ApiService {
+        val BASE_URL = BuildConfig.BASE_URL
         if (apiService == null) {
             val retrofit = Retrofit.Builder()
-                .baseUrl("https://story-api.dicoding.dev/v1/")
+                .baseUrl(BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .client(okhttpClient(context))
                 .build()
@@ -46,9 +47,9 @@ object ApiRequest {
 
     private fun okhttpClient(context: Context): OkHttpClient {
         // Logging Interceptor
-        val loggingInterceptor = HttpLoggingInterceptor().apply {
-            level = HttpLoggingInterceptor.Level.BODY
-        }
+
+
+        val loggingInterceptor = if(BuildConfig.DEBUG) { HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.BODY) }else { HttpLoggingInterceptor().setLevel(HttpLoggingInterceptor.Level.NONE) }
 
         return OkHttpClient.Builder()
             .addInterceptor(AuthInterceptor(context))

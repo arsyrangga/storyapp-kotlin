@@ -2,7 +2,6 @@ package com.rangga.storyapp.data.retrofit
 
 import android.content.Context
 import com.rangga.storyapp.BuildConfig
-import com.rangga.storyapp.helper.SessionManager
 import com.rangga.storyapp.helper.TokenDatastore
 import okhttp3.Interceptor
 import okhttp3.OkHttpClient

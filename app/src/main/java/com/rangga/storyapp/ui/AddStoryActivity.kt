@@ -20,14 +20,8 @@ import com.bumptech.glide.Glide
 import com.loopj.android.http.BuildConfig
 import com.rangga.storyapp.R
 import com.rangga.storyapp.databinding.ActivityAddStoryBinding
-import com.rangga.storyapp.databinding.ActivityHomeBinding
-import com.rangga.storyapp.databinding.ActivityMainBinding
-import com.rangga.storyapp.helper.TokenDatastore
-import com.rangga.storyapp.helper.Utils.Companion.uriToFile
 import com.rangga.storyapp.helper.ViewModelFactoryMain
-import com.rangga.storyapp.helper.dataStore
 import com.rangga.storyapp.model.AddStoryViewModel
-import com.rangga.storyapp.model.HomeViewModel
 import java.io.File
 import java.text.SimpleDateFormat
 import java.util.Date

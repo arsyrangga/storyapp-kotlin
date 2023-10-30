@@ -5,11 +5,8 @@ import android.os.Bundle
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.bumptech.glide.Glide
-import com.rangga.storyapp.R
-import com.rangga.storyapp.databinding.ActivityAddStoryBinding
 import com.rangga.storyapp.databinding.ActivityDetailStoryBinding
 import com.rangga.storyapp.helper.ViewModelFactoryMain
-import com.rangga.storyapp.model.AddStoryViewModel
 import com.rangga.storyapp.model.DetailStoryViewModel
 
 class DetailStoryActivity : AppCompatActivity() {

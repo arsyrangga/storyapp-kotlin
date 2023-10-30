@@ -7,39 +7,33 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
+import androidx.activity.viewModels
 import androidx.core.app.ActivityOptionsCompat
 import androidx.lifecycle.Observer
-import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.rangga.storyapp.R
 import com.rangga.storyapp.adapter.ListStoryAdapter
-import com.rangga.storyapp.data.response.ListStoryDataResponse
-import com.rangga.storyapp.data.retrofit.AuthInterceptor
 import com.rangga.storyapp.databinding.ActivityHomeBinding
-import com.rangga.storyapp.databinding.ActivityMainBinding
-import com.rangga.storyapp.helper.TokenDatastore
-import com.rangga.storyapp.helper.ViewModelFactoryMain
-import com.rangga.storyapp.helper.dataStore
+import com.rangga.storyapp.helper.ViewModelFactoryHome
 import com.rangga.storyapp.model.HomeViewModel
 
 class HomeActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityHomeBinding
-    private lateinit var viewModel: HomeViewModel
+    private val viewModel: HomeViewModel by viewModels {
+        ViewModelFactoryHome(this)
+    }
     private lateinit var rvStory: RecyclerView
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityHomeBinding.inflate(layoutInflater)
         setContentView(binding.root)
         rvStory = binding.rvStory
-        viewModel = ViewModelProvider(this, ViewModelFactoryMain(applicationContext)).get(
-            HomeViewModel::class.java
-        )
 
-        viewModel.getData()
-        viewModel.list.observe(this){
-                showRecyclerList(it)
-        }
+
+        getData()
+
+
         binding.btnPlus.setOnClickListener(this)
         supportActionBar?.title = "The Stories"
     }
@@ -50,21 +44,31 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
         return true
     }
 
+    private fun getData() {
+        rvStory.layoutManager = GridLayoutManager(this, 1)
+        val adapter = ListStoryAdapter()
+        rvStory.adapter = adapter
+        viewModel.list.observe(this, Observer {
+            adapter.submitData(lifecycle, it)
+        })
+    }
+
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
-        viewModel.removeToken()
-        val intent = Intent(this, MainActivity::class.java)
-        startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle())
+        when(item.itemId){
+            R.id.menu_maps -> {
+                val intent = Intent(this, MapsActivity::class.java)
+                startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle())
+            }
+        }
+//        viewModel.removeToken()
+//        val intent = Intent(this, MainActivity::class.java)
+//        startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle())
         return super.onOptionsItemSelected(item)
     }
 
     override fun onBackPressed() {
     }
 
-    private fun showRecyclerList(list: List<ListStoryDataResponse>) {
-        rvStory.layoutManager = GridLayoutManager(this, 1)
-        val listAccountAdapter = ListStoryAdapter(list)
-        rvStory.adapter = listAccountAdapter
-    }
 
     override fun onClick(v: View?) {
         when (v?.id) {

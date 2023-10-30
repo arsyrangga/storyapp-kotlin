@@ -3,25 +3,15 @@ package com.rangga.storyapp.ui
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.text.Editable
-import android.text.TextWatcher
-import android.util.Log
 import android.view.View
 import android.widget.Toast
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.rangga.storyapp.R
 import com.rangga.storyapp.data.parcel.LoginParcel
-import com.rangga.storyapp.data.response.ListStoryDataResponse
 import com.rangga.storyapp.databinding.ActivityMainBinding
-import com.rangga.storyapp.databinding.ActivityRegisterBinding
-import com.rangga.storyapp.helper.TokenDatastore
-import com.rangga.storyapp.helper.ViewModelFactory
 import com.rangga.storyapp.helper.ViewModelFactoryMain
-import com.rangga.storyapp.helper.dataStore
 import com.rangga.storyapp.model.MainViewModel
-import com.rangga.storyapp.model.RegisterViewModel
 
 class MainActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityMainBinding

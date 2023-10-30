@@ -1,15 +1,10 @@
 package com.rangga.storyapp.model
 
 import android.annotation.SuppressLint
-import android.app.Application
 import android.content.Context
-import android.util.Log
-import android.widget.Toast
-import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.rangga.storyapp.data.parcel.RegistParcel
-import com.rangga.storyapp.data.response.ListStoryResponse
 import com.rangga.storyapp.data.response.RegisterResponse
 import com.rangga.storyapp.data.retrofit.ApiRequest
 import retrofit2.Call

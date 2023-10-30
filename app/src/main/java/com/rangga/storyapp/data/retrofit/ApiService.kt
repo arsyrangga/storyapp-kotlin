@@ -3,7 +3,6 @@ package com.rangga.storyapp.data.retrofit
 
 import com.rangga.storyapp.data.parcel.LoginParcel
 import com.rangga.storyapp.data.parcel.RegistParcel
-import com.rangga.storyapp.data.response.AddStoryResponse
 import com.rangga.storyapp.data.response.DetailStoryResponse
 import com.rangga.storyapp.data.response.FileUploadResponse
 import com.rangga.storyapp.data.response.ListStoryResponse
@@ -22,7 +21,10 @@ interface ApiService {
     fun login(@Body post: LoginParcel): Call<LoginResponse>
 
     @GET("stories")
-    fun getStories(): Call<ListStoryResponse>
+    fun getStories(
+        @Query("page") page: Int = 1,
+        @Query("size") size: Int = 10
+    ): Call<ListStoryResponse>
 
     @GET("stories/{id}")
     fun getDetailStories(@Path("id") id: String?): Call<DetailStoryResponse>

@@ -1,18 +1,13 @@
 package com.rangga.storyapp.model
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.net.Uri
-import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import com.google.gson.Gson
-import com.rangga.storyapp.data.parcel.LoginParcel
 import com.rangga.storyapp.data.response.FileUploadResponse
-import com.rangga.storyapp.data.response.LoginResponse
 import com.rangga.storyapp.data.retrofit.ApiRequest
-import com.rangga.storyapp.helper.TokenDatastore
 import com.rangga.storyapp.helper.Utils
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -20,11 +15,7 @@ import okhttp3.MediaType.Companion.toMediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody.Companion.asRequestBody
 import okhttp3.RequestBody.Companion.toRequestBody
-import retrofit2.Call
-import retrofit2.Callback
 import retrofit2.HttpException
-import retrofit2.Response
-import retrofit2.await
 import retrofit2.awaitResponse
 
 class AddStoryViewModel(private val context: Context) : ViewModel() {

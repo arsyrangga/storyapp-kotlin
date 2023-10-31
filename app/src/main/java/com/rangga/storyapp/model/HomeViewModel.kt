@@ -13,16 +13,4 @@ class HomeViewModel(storyRepository: StoryRepository) : ViewModel() {
     val loading: MutableLiveData<Boolean> = MutableLiveData()
     val list: LiveData<PagingData<ListStoryParcel>> =
         storyRepository.getStory().cachedIn(viewModelScope)
-
-
-//    fun removeToken() {
-//        viewModelScope.launch {
-//            sessionManager.clearAuthToken()
-//        }
-//    }
-
-
-
-
-
 }

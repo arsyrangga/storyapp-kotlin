@@ -20,7 +20,7 @@ class MapViewModel(private val context: Context): ViewModel() {
 
         viewModelScope.launch(Dispatchers.IO) {
             try {
-                val response = ApiRequest.getApiService(context).getStories(1).awaitResponse()
+                val response = ApiRequest.getApiService(context).getStoriesLocation().awaitResponse()
                 if(response.isSuccessful){
                     val data = response.body()
                     dataResponse.postValue(data)

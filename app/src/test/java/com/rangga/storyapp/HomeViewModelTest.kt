@@ -55,7 +55,7 @@ class HomeViewModelTest {
     }
 
     @Test
-    fun `Memastikan data tidak null dan Mengembalikan Data`() = runTest  {
+    fun `Ketika berhasil memuat cerita`() = runTest  {
         val dummyStory = DataDummy.generateDummyStoryEntity()
         val data: PagingData<ListStoryParcel> = StoryPagingSource.snapshot(dummyStory)
         val expectedQuote = MutableLiveData<PagingData<ListStoryParcel>>()
@@ -71,55 +71,22 @@ class HomeViewModelTest {
             workerDispatcher = Dispatchers.Main,
         )
         differ.submitData(actualQuote)
+
+//      Memastikan data tidak null dan Mengembalikan Data
         assertNotNull(actualQuote)
-    }
 
-    @Test
-    fun `Memastikan jumlah data sesuai dengan yang diharapkan`() = runTest  {
-        val dummyStory = DataDummy.generateDummyStoryEntity()
-        val data: PagingData<ListStoryParcel> = StoryPagingSource.snapshot(dummyStory)
-        val expectedQuote = MutableLiveData<PagingData<ListStoryParcel>>()
-        expectedQuote.value = data
-        `when`(storyRepository.getStory()).thenReturn(expectedQuote)
-
-        val homeViewModel = HomeViewModel(storyRepository)
-        val actualQuote: PagingData<ListStoryParcel> = homeViewModel.list.getOrAwaitValue()
-
-        val differ = AsyncPagingDataDiffer(
-            diffCallback = ListStoryAdapter.StoryCallback,
-            updateCallback = noopListUpdateCallback,
-            workerDispatcher = Dispatchers.Main,
-        )
-        differ.submitData(actualQuote)
+//      Memastikan jumlah data sesuai dengan yang diharapkan
         assertEquals(dummyStory.size, differ.itemCount)
-    }
 
-    @Test
-    fun `Memastikan data pertama yang dikembalikan sesuai`() = runTest  {
-        val dummyStory = DataDummy.generateDummyStoryEntity()
-        val data: PagingData<ListStoryParcel> = StoryPagingSource.snapshot(dummyStory)
-        val expectedQuote = MutableLiveData<PagingData<ListStoryParcel>>()
-        expectedQuote.value = data
-        `when`(storyRepository.getStory()).thenReturn(expectedQuote)
-
-        val homeViewModel = HomeViewModel(storyRepository)
-        val actualQuote: PagingData<ListStoryParcel> = homeViewModel.list.getOrAwaitValue()
-
-        val differ = AsyncPagingDataDiffer(
-            diffCallback = ListStoryAdapter.StoryCallback,
-            updateCallback = noopListUpdateCallback,
-            workerDispatcher = Dispatchers.Main,
-        )
-        differ.submitData(actualQuote)
-
+//      Memastikan data pertama yang dikembalikan sesuai
         val firstDataDummy = dummyStory[0]
         val firstDataActual = differ.getItem(0)
-
         assertEquals(firstDataDummy, firstDataActual)
+
     }
 
     @Test
-    fun `Ketika tidak ada data cerita, memastikan jumlah data yang dikembalikan nol`() = runTest  {
+    fun `Ketika tidak ada data cerita`() = runTest  {
         val dummyStory = DataDummy.generateDummyEmptyStoryEntity()
         val data: PagingData<ListStoryParcel> = StoryPagingSource.snapshot(dummyStory)
         val expectedQuote = MutableLiveData<PagingData<ListStoryParcel>>()
@@ -136,8 +103,8 @@ class HomeViewModelTest {
         )
         differ.submitData(actualQuote)
 
-
-        assertEquals(differ.itemCount, 0)
+//      memastikan jumlah data yang dikembalikan nol
+        assertEquals(0, differ.itemCount)
     }
 }
 

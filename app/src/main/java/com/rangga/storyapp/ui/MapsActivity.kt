@@ -97,8 +97,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         })
             // Add a marker in Sydney and move the camera
         val jakarta = LatLng(-6.1944, 106.8229)
-        mMap.addMarker(MarkerOptions().position(jakarta).title("Marker in Jakarta"))
-        mMap.animateCamera(CameraUpdateFactory.newLatLng(jakarta))
+        mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(jakarta,2F))
     }
 
 

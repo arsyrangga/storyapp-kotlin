@@ -15,8 +15,12 @@ import androidx.recyclerview.widget.RecyclerView
 import com.rangga.storyapp.R
 import com.rangga.storyapp.adapter.ListStoryAdapter
 import com.rangga.storyapp.databinding.ActivityHomeBinding
+import com.rangga.storyapp.helper.SessionManager
 import com.rangga.storyapp.helper.ViewModelFactoryHome
 import com.rangga.storyapp.model.HomeViewModel
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 class HomeActivity : AppCompatActivity(), View.OnClickListener {
     private lateinit var binding: ActivityHomeBinding
@@ -44,6 +48,15 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
         return true
     }
 
+
+    fun logout() {
+        val scope = CoroutineScope(Dispatchers.Default)
+        val sessionManager = SessionManager(applicationContext)
+        scope.launch {
+            sessionManager.clearAuthToken()
+        }
+    }
+
     private fun getData() {
         rvStory.layoutManager = GridLayoutManager(this, 1)
         val adapter = ListStoryAdapter()
@@ -59,10 +72,12 @@ class HomeActivity : AppCompatActivity(), View.OnClickListener {
                 val intent = Intent(this, MapsActivity::class.java)
                 startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle())
             }
+            R.id.menu_item -> {
+                logout()
+                val intent = Intent(this, MainActivity::class.java)
+                startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle())
+            }
         }
-//        viewModel.removeToken()
-//        val intent = Intent(this, MainActivity::class.java)
-//        startActivity(intent, ActivityOptionsCompat.makeSceneTransitionAnimation(this).toBundle())
         return super.onOptionsItemSelected(item)
     }
 
